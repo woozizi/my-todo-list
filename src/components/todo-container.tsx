@@ -55,13 +55,16 @@ const TodoContainer = () => {
 
   return (
     <div>
-      <FilterSelect
-        filter={filter}
-        setFilter={setFilter}
-        total={total}
-        completed={completed}
-        remaining={remaining}
-      />
+      <div className='mb-4 flex items-center justify-between'>
+        <h1 className='mb-4 text-2xl font-bold'>TODO LIST</h1>
+        <FilterSelect
+          filter={filter}
+          setFilter={setFilter}
+          total={total}
+          completed={completed}
+          remaining={remaining}
+        />
+      </div>
       <TodoForm
         title={title}
         setTitle={setTitle}

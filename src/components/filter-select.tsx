@@ -20,13 +20,13 @@ export const FilterSelect = ({
   remaining,
 }: Props) => {
   return (
-    <>
+    <div className='w-24 sm:w-28'>
       <label htmlFor='filter-select' className='sr-only'>
         필터 선택
       </label>
       <select
         id='filter-select'
-        className='mb-4 w-full rounded border p-2'
+        className='block w-full rounded px-2 py-1 text-xs focus:outline-none focus:ring-1 focus:ring-blue-400'
         value={filter}
         onChange={(e) => setFilter(e.target.value as Filter)}
         aria-label='할 일 필터'
@@ -35,6 +35,6 @@ export const FilterSelect = ({
         <option value='completed'>완료 ({completed})</option>
         <option value='remaining'>남은 ({remaining})</option>
       </select>
-    </>
+    </div>
   );
 };
