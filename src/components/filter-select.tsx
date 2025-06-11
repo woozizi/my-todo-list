@@ -18,14 +18,23 @@ export const FilterSelect = ({
   total,
   completed,
   remaining,
-}: Props) => (
-  <select
-    className='mb-4 w-full rounded border p-2'
-    value={filter}
-    onChange={(e) => setFilter(e.target.value as Filter)}
-  >
-    <option value='all'>전체 ({total})</option>
-    <option value='completed'>완료 ({completed})</option>
-    <option value='remaining'>남은 ({remaining})</option>
-  </select>
-);
+}: Props) => {
+  return (
+    <>
+      <label htmlFor='filter-select' className='sr-only'>
+        필터 선택
+      </label>
+      <select
+        id='filter-select'
+        className='mb-4 w-full rounded border p-2'
+        value={filter}
+        onChange={(e) => setFilter(e.target.value as Filter)}
+        aria-label='할 일 필터'
+      >
+        <option value='all'>전체 ({total})</option>
+        <option value='completed'>완료 ({completed})</option>
+        <option value='remaining'>남은 ({remaining})</option>
+      </select>
+    </>
+  );
+};

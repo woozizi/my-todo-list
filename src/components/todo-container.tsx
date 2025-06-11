@@ -54,7 +54,7 @@ const TodoContainer = () => {
   };
 
   return (
-    <>
+    <div className='rounded border p-4'>
       <FilterSelect
         filter={filter}
         setFilter={setFilter}
@@ -74,7 +74,7 @@ const TodoContainer = () => {
         onDelete={handleDelete}
         deletePending={deleteTodo.isPending}
       />
-    </>
+    </div>
   );
 };
 

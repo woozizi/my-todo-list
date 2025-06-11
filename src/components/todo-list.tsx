@@ -16,16 +16,18 @@ export const TodoList = ({
   onToggle,
   onDelete,
   deletePending,
-}: Props) => (
-  <ul className='space-y-4'>
-    {todos.map((todo) => (
-      <TodoItem
-        key={todo.id}
-        todo={todo}
-        onToggle={onToggle}
-        onDelete={onDelete}
-        deletePending={deletePending}
-      />
-    ))}
-  </ul>
-);
+}: Props) => {
+  return (
+    <ul className='space-y-4' aria-label='할 일 목록' role='list'>
+      {todos.map((todo) => (
+        <TodoItem
+          key={todo.id}
+          todo={todo}
+          onToggle={onToggle}
+          onDelete={onDelete}
+          deletePending={deletePending}
+        />
+      ))}
+    </ul>
+  );
+};
