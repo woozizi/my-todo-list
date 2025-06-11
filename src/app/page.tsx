@@ -8,6 +8,8 @@ import {
 import { Todo } from '@/types/todo';
 import { useState } from 'react';
 
+type Filter = 'all' | 'completed' | 'remaining';
+
 export default function Home() {
   const { data: todos, isPending, isError } = useTodos();
   const addTodo = useAddTodo();
@@ -15,6 +17,7 @@ export default function Home() {
   const deleteTodo = useDeleteTodo();
 
   const [title, setTitle] = useState('');
+  const [filter, setFilter] = useState<Filter>('all');
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -36,9 +39,34 @@ export default function Home() {
   if (isPending) return <p>로딩 중입니다</p>;
   if (isError) return <p>데이터 불러오기가 실패했습니다</p>;
 
+  const totalCount = todos.length;
+  const completedCount = todos.filter((t) => t.completed).length;
+  const remainingCount = totalCount - completedCount;
+
+  const filteredTodos = todos.filter((t) =>
+    filter === 'completed'
+      ? t.completed
+      : filter === 'remaining'
+        ? !t.completed
+        : true
+  );
+
   return (
     <div className='mx-auto flex max-w-xl flex-col p-4'>
       <h1 className='mb-4 text-2xl font-bold'>TODO LIST</h1>
+
+      {/* 필터 탭 */}
+      <div className='mb-4'>
+        <select
+          className='w-full rounded border p-2'
+          value={filter}
+          onChange={(e) => setFilter(e.target.value as Filter)}
+        >
+          <option value='all'>전체 ({totalCount})</option>
+          <option value='completed'>완료 ({completedCount})</option>
+          <option value='remaining'>남은 ({remainingCount})</option>
+        </select>
+      </div>
 
       {/*추가 form*/}
       <form onSubmit={handleSubmit} className='mb-4 flex gap-2'>
@@ -60,7 +88,7 @@ export default function Home() {
 
       {/*할일 리스트*/}
       <ul className='space-y-4'>
-        {todos!.map((todo: Todo) => (
+        {filteredTodos.map((todo: Todo) => (
           <li
             key={todo.id}
             className='flex items-center justify-between rounded border p-2'
