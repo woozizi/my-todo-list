@@ -3,16 +3,31 @@
     {
       "id": "9286",
       "title": "할 일 추가",
-      "completed": false
+      "completed": true
     },
     {
       "id": "b847",
       "title": "두번째 할 일",
-      "completed": false
+      "completed": true
     },
     {
       "id": "bad6",
       "title": "세번째 할 일",
+      "completed": true
+    },
+    {
+      "id": "626c",
+      "title": "aaa",
+      "completed": false
+    },
+    {
+      "id": "0811",
+      "title": "sdfdsf",
+      "completed": false
+    },
+    {
+      "id": "67af",
+      "title": "sdfsdfc",
       "completed": false
     }
   ]

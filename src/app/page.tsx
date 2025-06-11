@@ -15,7 +15,7 @@ export default async function Home() {
 
   return (
     <HydrationBoundary state={dehydrate(qc)}>
-      <div className='mx-auto flex min-h-screen w-full max-w-xl flex-col bg-white px-2 py-6 shadow sm:rounded-lg sm:px-4 md:px-8'>
+      <div className='mx-auto my-6 flex min-h-screen w-full max-w-xl flex-col bg-white px-2 py-6 shadow sm:rounded-lg sm:px-4 md:px-8'>
         <TodoContainer />
       </div>
     </HydrationBoundary>
