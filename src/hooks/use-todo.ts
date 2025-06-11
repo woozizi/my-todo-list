@@ -1,4 +1,4 @@
-import { addTodo, fetchTodos } from '@/apis/todo-api';
+import { addTodo, deleteTodo, fetchTodos, updateTodo } from '@/apis/todo-api';
 import { Todo } from '@/types/todo';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 
@@ -16,6 +16,27 @@ export const useAddTodo = () => {
 
   return useMutation({
     mutationFn: (title: string) => addTodo(title),
+    onSuccess: () => {
+      qc.invalidateQueries({ queryKey: ['todos'] });
+    },
+  });
+};
+
+export const useUpdateTodo = () => {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: (todo: Todo) => updateTodo(todo),
+    onSuccess: () => {
+      qc.invalidateQueries({ queryKey: ['todos'] });
+    },
+  });
+};
+
+// todo 삭제 hook
+export const useDeleteTodo = () => {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: (id: string) => deleteTodo(id),
     onSuccess: () => {
       qc.invalidateQueries({ queryKey: ['todos'] });
     },

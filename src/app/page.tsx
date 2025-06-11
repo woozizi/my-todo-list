@@ -6,6 +6,7 @@ import { useState } from 'react';
 export default function Home() {
   const { data: todos, isPending, isError } = useTodos();
   const addTodo = useAddTodo();
+
   const [title, setTitle] = useState('');
 
   const handleSubmit = (e: React.FormEvent) => {
