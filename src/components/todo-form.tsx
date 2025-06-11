@@ -20,13 +20,13 @@ export const TodoForm = ({ title, setTitle, onSubmit, isPending }: Props) => {
         value={title}
         onChange={(e) => setTitle(e.target.value)}
         placeholder='새 할 일을 입력하세요'
-        className='flex-1 rounded border p-2 text-sm sm:text-base'
+        className='flex-1 rounded border px-2 py-1 text-sm sm:text-base'
         aria-label='새 할 일 입력'
       />
       <button
         type='submit'
         disabled={isPending}
-        className='rounded bg-blue-500 px-4 py-2 text-sm text-white disabled:opacity-50 sm:text-base'
+        className='rounded bg-blue-500 px-2 py-1 text-sm text-white disabled:opacity-50 sm:text-base'
         aria-label='할 일 추가'
       >
         {isPending ? '추가 중…' : '추가'}
