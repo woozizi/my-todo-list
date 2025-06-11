@@ -1,8 +1,8 @@
 'use client';
 
+import { FILTER_LABELS, FILTER_OPTIONS } from '@/constants';
+import { Filter } from '@/types/filter';
 import React from 'react';
-
-export type Filter = 'all' | 'completed' | 'remaining';
 
 interface Props {
   filter: Filter;
@@ -19,6 +19,12 @@ export const FilterSelect = ({
   completed,
   remaining,
 }: Props) => {
+  const counts = {
+    all: total,
+    completed,
+    remaining,
+  };
+
   return (
     <div className='w-24 sm:w-28'>
       <label htmlFor='filter-select' className='sr-only'>
@@ -31,9 +37,11 @@ export const FilterSelect = ({
         onChange={(e) => setFilter(e.target.value as Filter)}
         aria-label='할 일 필터'
       >
-        <option value='all'>전체 ({total})</option>
-        <option value='completed'>완료 ({completed})</option>
-        <option value='remaining'>남은 ({remaining})</option>
+        {FILTER_OPTIONS.map((type) => (
+          <option key={type} value={type}>
+            {FILTER_LABELS[type]} ({counts[type]})
+          </option>
+        ))}
       </select>
     </div>
   );

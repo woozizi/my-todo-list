@@ -1,5 +1,5 @@
 'use client';
-import { Filter, FilterSelect } from '@/components/filter-select';
+import { FilterSelect } from '@/components/filter-select';
 import { TodoForm } from '@/components/todo-form';
 import { TodoList } from '@/components/todo-list';
 import {
@@ -8,6 +8,7 @@ import {
   useTodos,
   useUpdateTodo,
 } from '@/hooks/use-todo';
+import { Filter } from '@/types/filter';
 import { Todo } from '@/types/todo';
 import { useState } from 'react';
 
