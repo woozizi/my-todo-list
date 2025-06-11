@@ -1,11 +1,12 @@
 import { addTodo, deleteTodo, fetchTodos, updateTodo } from '@/apis/todo-api';
+import { QUERY_KEYS } from '@/constants';
 import { Todo } from '@/types/todo';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 
 // 전체 todo 조회 hook
 export const useTodos = () => {
   return useQuery<Todo[]>({
-    queryKey: ['todos'],
+    queryKey: QUERY_KEYS.TODOS,
     queryFn: fetchTodos,
   });
 };
@@ -17,7 +18,7 @@ export const useAddTodo = () => {
   return useMutation({
     mutationFn: (title: string) => addTodo(title),
     onSuccess: () => {
-      qc.invalidateQueries({ queryKey: ['todos'] });
+      qc.invalidateQueries({ queryKey: QUERY_KEYS.TODOS });
     },
   });
 };
@@ -28,7 +29,7 @@ export const useUpdateTodo = () => {
   return useMutation({
     mutationFn: (todo: Todo) => updateTodo(todo),
     onSuccess: () => {
-      qc.invalidateQueries({ queryKey: ['todos'] });
+      qc.invalidateQueries({ queryKey: QUERY_KEYS.TODOS });
     },
   });
 };
@@ -39,7 +40,7 @@ export const useDeleteTodo = () => {
   return useMutation({
     mutationFn: (id: string) => deleteTodo(id),
     onSuccess: () => {
-      qc.invalidateQueries({ queryKey: ['todos'] });
+      qc.invalidateQueries({ queryKey: QUERY_KEYS.TODOS });
     },
   });
 };

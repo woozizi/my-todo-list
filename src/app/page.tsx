@@ -1,5 +1,6 @@
 import { fetchTodos } from '@/apis/todo-api';
 import TodoContainer from '@/components/todo-container';
+import { QUERY_KEYS } from '@/constants';
 import {
   dehydrate,
   HydrationBoundary,
@@ -9,7 +10,7 @@ import {
 export default async function Home() {
   const qc = new QueryClient();
   await qc.prefetchQuery({
-    queryKey: ['todos'],
+    queryKey: QUERY_KEYS.TODOS,
     queryFn: () => fetchTodos(),
   });
 

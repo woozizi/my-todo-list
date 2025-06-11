@@ -1,3 +1,4 @@
+import { API_PATHS } from '@/constants';
 import { api } from '@/lib/api';
 import { Todo } from '@/types/todo';
 
@@ -6,7 +7,7 @@ import { Todo } from '@/types/todo';
  * @returns {Promise<Todo>} Todo 객체 배열을 반환
  */
 export const fetchTodos = async (): Promise<Todo[]> => {
-  const { data } = await api.get('/todos');
+  const { data } = await api.get(API_PATHS.TODOS);
   return data;
 };
 
@@ -16,7 +17,7 @@ export const fetchTodos = async (): Promise<Todo[]> => {
  * @returns {Promise<Todo>} 생성된 Todo 객체를 반환
  */
 export const addTodo = async (title: string): Promise<Todo> => {
-  const { data } = await api.post('/todos', { title, completed: false });
+  const { data } = await api.post(API_PATHS.TODOS, { title, completed: false });
   return data;
 };
 
@@ -26,7 +27,7 @@ export const addTodo = async (title: string): Promise<Todo> => {
  * @returns {Promise<Todo>} 업데이트 Todo 객체를 반환
  */
 export const updateTodo = async (todo: Todo): Promise<Todo> => {
-  const { data } = await api.put(`/todos/${todo.id}`, todo);
+  const { data } = await api.put(`${API_PATHS.TODOS}/${todo.id}`, todo);
   return data;
 };
 
@@ -35,5 +36,5 @@ export const updateTodo = async (todo: Todo): Promise<Todo> => {
  * @param id - 삭제할 todo의 고유 식별자
  */
 export const deleteTodo = async (id: string): Promise<void> => {
-  await api.delete(`/todos/${id}`);
+  await api.delete(`${API_PATHS.TODOS}/${id}`);
 };
