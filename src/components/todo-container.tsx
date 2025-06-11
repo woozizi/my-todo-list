@@ -54,7 +54,7 @@ const TodoContainer = () => {
   };
 
   return (
-    <div className='rounded border p-4'>
+    <div>
       <FilterSelect
         filter={filter}
         setFilter={setFilter}

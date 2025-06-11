@@ -1,34 +1,19 @@
 {
   "todos": [
     {
-      "id": "1",
-      "title": "첫 번째 할 일",
+      "id": "9286",
+      "title": "할 일 추가",
       "completed": false
     },
     {
-      "id": "2",
-      "title": "두 번째 할 일",
+      "id": "b847",
+      "title": "두번째 할 일",
       "completed": false
     },
     {
-      "id": "b8c4",
-      "title": "aaa",
+      "id": "bad6",
+      "title": "세번째 할 일",
       "completed": false
-    },
-    {
-      "id": "b7d7",
-      "title": "ddd",
-      "completed": true
-    },
-    {
-      "id": "4a7e",
-      "title": "시작",
-      "completed": true
-    },
-    {
-      "id": "83f8",
-      "title": "해야돼",
-      "completed": true
     }
   ]
 }
