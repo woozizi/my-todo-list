@@ -14,13 +14,13 @@ import { useState } from 'react';
 type Filter = 'all' | 'completed' | 'remaining';
 
 export default function Home() {
-  const { data: todos, isPending, isError } = useTodos();
+  const { data: todos = [], isPending, isError } = useTodos();
   const addTodo = useAddTodo();
   const updateTodo = useUpdateTodo();
   const deleteTodo = useDeleteTodo();
 
   const [title, setTitle] = useState('');
-  const [filter, setFilter] = useState<Filter>('all');
+  const [filter, setFilter] = useState<Filter>('remaining');
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
