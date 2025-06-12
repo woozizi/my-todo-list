@@ -22,6 +22,7 @@ const TodoContainer = () => {
 
   const [title, setTitle] = useState('');
   const [filter, setFilter] = useState<Filter>('all');
+  const [deletingId, setDeletingId] = useState<string | null>(null);
 
   if (isPending) return <p>로딩 중입니다</p>;
   if (isError) return <p>데이터 불러오기가 실패했습니다</p>;
@@ -60,7 +61,10 @@ const TodoContainer = () => {
 
   //todo 삭제
   const handleDelete = (id: string) => {
-    deleteTodo.mutate(id);
+    setDeletingId(id);
+    deleteTodo.mutate(id, {
+      onSettled: () => setDeletingId(null),
+    });
   };
 
   return (
@@ -86,7 +90,7 @@ const TodoContainer = () => {
         todos={filtered}
         onToggle={toggleCompleted}
         onDelete={handleDelete}
-        deletePending={deleteTodo.isPending}
+        deletingId={deletingId}
       />
     </main>
   );

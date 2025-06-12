@@ -8,15 +8,10 @@ interface Props {
   todos: Todo[];
   onToggle: (t: Todo) => void;
   onDelete: (id: string) => void;
-  deletePending: boolean;
+  deletingId: string | null;
 }
 
-export const TodoList = ({
-  todos,
-  onToggle,
-  onDelete,
-  deletePending,
-}: Props) => {
+export const TodoList = ({ todos, onToggle, onDelete, deletingId }: Props) => {
   return (
     <ul className='space-y-4' aria-label='할 일 목록' role='list'>
       {todos.map((todo) => (
@@ -25,7 +20,7 @@ export const TodoList = ({
           todo={todo}
           onToggle={onToggle}
           onDelete={onDelete}
-          deletePending={deletePending}
+          deleting={deletingId === todo.id}
         />
       ))}
     </ul>
