@@ -26,10 +26,12 @@ const TodoContainer = () => {
   if (isPending) return <p>로딩 중입니다</p>;
   if (isError) return <p>데이터 불러오기가 실패했습니다</p>;
 
+  // 전체 수, 남은 수, 완료된 수
   const total = todos.length;
   const completed = todos.filter((t) => t.completed).length;
   const remaining = total - completed;
 
+  // 필터
   const filtered = todos.filter((t) =>
     filter === 'completed'
       ? t.completed
@@ -62,7 +64,7 @@ const TodoContainer = () => {
   };
 
   return (
-    <div>
+    <main>
       <div className='mb-4 flex items-center justify-between'>
         <h1 className='mb-4 text-2xl font-bold'>TODO LIST</h1>
         <FilterSelect
@@ -86,7 +88,7 @@ const TodoContainer = () => {
         onDelete={handleDelete}
         deletePending={deleteTodo.isPending}
       />
-    </div>
+    </main>
   );
 };
 
