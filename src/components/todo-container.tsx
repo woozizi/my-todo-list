@@ -39,7 +39,10 @@ const TodoContainer = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!title.trim()) return;
+    if (!title.trim()) {
+      alert('할 일을 입력해주세요!');
+      return;
+    }
 
     addTodo.mutate(title, {
       onSuccess: () => setTitle(''),
