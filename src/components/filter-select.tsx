@@ -32,7 +32,7 @@ export const FilterSelect = ({
       </label>
       <select
         id='filter-select'
-        className='block w-full rounded px-2 py-1 text-xs focus:outline-none focus:ring-1 focus:ring-blue-400'
+        className='block w-full rounded px-2 py-1 text-xs focus:outline-none focus:ring-1 focus:ring-blue-500'
         value={filter}
         onChange={(e) => setFilter(e.target.value as Filter)}
         aria-label='할 일 필터'

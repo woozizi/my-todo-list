@@ -19,7 +19,6 @@ export const TodoForm = ({ title, setTitle, onSubmit, isPending }: Props) => {
         type='text'
         value={title}
         onChange={(e) => setTitle(e.target.value)}
-        required
         placeholder='새 할 일을 입력하세요'
         className='flex-1 rounded border px-2 py-1 text-sm sm:text-base'
         aria-label='새 할 일 입력'

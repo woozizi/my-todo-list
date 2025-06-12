@@ -29,6 +29,7 @@ const TodoContainer = () => {
   const total = todos.length;
   const completed = todos.filter((t) => t.completed).length;
   const remaining = total - completed;
+
   const filtered = todos.filter((t) =>
     filter === 'completed'
       ? t.completed
@@ -37,6 +38,7 @@ const TodoContainer = () => {
         : true
   );
 
+  //todo 추가
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!title.trim()) {
@@ -49,10 +51,12 @@ const TodoContainer = () => {
     });
   };
 
+  //todo 완료/비완료 토글 처리
   const toggleCompleted = (todo: Todo) => {
     updateTodo.mutate({ ...todo, completed: !todo.completed });
   };
 
+  //todo 삭제
   const handleDelete = (id: string) => {
     deleteTodo.mutate(id);
   };
@@ -69,6 +73,7 @@ const TodoContainer = () => {
           remaining={remaining}
         />
       </div>
+
       <TodoForm
         title={title}
         setTitle={setTitle}
