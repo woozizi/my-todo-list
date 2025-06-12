@@ -26,9 +26,32 @@ export const useAddTodo = () => {
 // todo 업데이트 hook
 export const useUpdateTodo = () => {
   const qc = useQueryClient();
-  return useMutation({
-    mutationFn: (todo: Todo) => updateTodo(todo),
-    onSuccess: () => {
+
+  return useMutation<Todo, Error, Todo, { previous?: Todo[] }>({
+    mutationFn: (updated) => updateTodo(updated),
+
+    onMutate: async (updated) => {
+      await qc.cancelQueries({ queryKey: QUERY_KEYS.TODOS });
+
+      const previous = qc.getQueryData<Todo[]>(QUERY_KEYS.TODOS);
+
+      qc.setQueryData<Todo[]>(QUERY_KEYS.TODOS, (old = []) =>
+        old.map((todo) =>
+          todo.id === updated.id ? { ...todo, ...updated } : todo
+        )
+      );
+
+      return { previous };
+    },
+
+    onError: (error, _variables, context: any) => {
+      if (context?.previous) {
+        qc.setQueryData(QUERY_KEYS.TODOS, context.previous);
+      }
+      alert(`할 일 수정 실패 : ${error.message}`);
+    },
+
+    onSettled: () => {
       qc.invalidateQueries({ queryKey: QUERY_KEYS.TODOS });
     },
   });
